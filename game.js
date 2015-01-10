@@ -7,7 +7,13 @@ var mainState = ( function () {
     var preload = function () {
 	game.load.spritesheet('iceberg', 'img/iceberg.png', 70,70);
 	game.load.spritesheet('sun', 'img/sun.png', 50, 50);
-	game.load.spritesheet('glow', 'img/glow2.png', 91, 91);
+
+	game.load.spritesheet('glow0', 'img/glow.png', 70,70);
+	game.load.spritesheet('glow1', 'img/glow2.png', 91,91);
+	game.load.spritesheet('glow2', 'img/glow3.png', 118, 118);
+	game.load.spritesheet('glow3', 'img/glow4.png', 153, 153);
+	game.load.spritesheet('glow4', 'img/glow5.png', 200, 200);
+
 	game.load.spritesheet('refinery', 'img/refinery.png', 100, 100);
 	game.load.spritesheet('smog', 'img/smog.png', 200, 150);
 	game.load.image('water', 'img/water.png');
@@ -24,7 +30,6 @@ var mainState = ( function () {
 	sun = new Sun(game, you);
 	you.sun = sun;
 	Corporation = Corporation();
-	console.log('¿?');
 	Corporation.setPlayer(you);
 	Corporation.setGame(game);
     };

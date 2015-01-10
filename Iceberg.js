@@ -61,8 +61,14 @@ Iceberg.prototype.update = function () {
 }
 
 Iceberg.prototype.takeDamage = function () {
-    this.sprite.animations.play('getHurt');
-    this.hp--;
-    this.sprite.alpha = this.hp/this.totalHP;
-    this.isMelting = true;
+    if (sun.isHarmfull()) {
+	this.sprite.animations.play('getHurt');
+	this.hp--;
+	this.sprite.alpha = this.hp/this.totalHP;
+	this.isMelting = true;
+    }
+};
+
+Iceberg.prototype.isDead = function () {
+    return this.sprite.alpha <= 0;
 };

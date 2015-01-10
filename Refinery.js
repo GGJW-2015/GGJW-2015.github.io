@@ -1,6 +1,7 @@
-var Refinery = function (x, y, iceberg) {
+var Refinery = function (x, y, iceberg, sun) {
     this.hp = 30;
     this.iceberg = iceberg;
+    this.sun = sun;
 
     this.initializeBuilding(x,y); // 'refinery' sprite
     this.initializeSmog(x,y); // 'smog' sprite
@@ -24,6 +25,9 @@ Refinery.prototype.update = function () {
 	}
 
     }
+
+    if (this.isAlive() && !this.isDying())
+	sun.powerUp();
 };
 
 Refinery.prototype.initializeBuilding = function () {
