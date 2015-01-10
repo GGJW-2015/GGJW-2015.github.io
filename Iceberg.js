@@ -1,4 +1,6 @@
 var Iceberg = function (game, cursor) {
+    this.totalHP = 1000;
+    this.hp = this.totalHP;
     this.speed = 150;
     this.strength = 5;
     this.isAttacking = false;
@@ -33,13 +35,12 @@ Iceberg.prototype.update = function () {
       this.sprite.body.maxVelocity.setTo(this.speed, this.speed);
      */
 
-    you.isMelting = false;
-    you.isAttacking = false;
+    this.isMelting = false;
+    this.isAttacking = false;
 
-    game.physics.arcade.overlap(you.sprite, this.sun.sprite,
+    game.physics.arcade.overlap(this.sprite, this.sun.sprite,
 				function () {
-				    you.takeDamage();
-				    you.isMelting = true;
+				    this.takeDamage();
 				}, null, this);
 
     if (this.cursor.attack.isDown)
@@ -61,4 +62,7 @@ Iceberg.prototype.update = function () {
 
 Iceberg.prototype.takeDamage = function () {
     this.sprite.animations.play('getHurt');
+    this.hp--;
+    this.sprite.alpha = this.hp/this.totalHP;
+    this.isMelting = true;
 };

@@ -1,5 +1,5 @@
 var Refinery = function (x, y, iceberg) {
-    this.hp = 50;
+    this.hp = 30;
     this.iceberg = iceberg;
 
     this.initializeBuilding(x,y); // 'refinery' sprite

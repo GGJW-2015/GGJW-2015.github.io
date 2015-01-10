@@ -87,7 +87,7 @@ var Corporation = function () {
 	timeRemainingForRefinerySpawn--;
 	if (timeRemainingForRefinerySpawn <= 0) {
 	    // gets harder with the time!
-	    // refinerySpawnCooldown *= .9; //!
+	    refinerySpawnCooldown *= .99;
 	    timeRemainingForRefinerySpawn = refinerySpawnCooldown;
 	    spawnRefinery();
 	}
