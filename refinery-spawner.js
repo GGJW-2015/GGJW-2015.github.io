@@ -34,14 +34,14 @@ var Corporation = function () {
 
     var setMargins = function () {
 	margin.left = model.sprite.width * model.sprite.anchor.x;
-	margin.right = model.sprite.width - margin.left + worldWidth;
+	margin.right = -(model.sprite.width - margin.left) + worldWidth;
 	margin.top = model.sprite.height * model.sprite.anchor.y;
-	margin.bottom = model.sprite.height - margin.top + worldHeight;
+	margin.bottom = -(model.sprite.height - margin.top) + worldHeight;
 	console.log(margin);
     };
 
     var randomBetween = function (minimum, maximum) {
-	return Math.random() * (maximum - minimum) + minimum;
+	return Math.floor(Math.random() * (maximum - minimum) + minimum);
     };
 
     var recycleRefinery = function (x, y) {
@@ -87,7 +87,7 @@ var Corporation = function () {
 	timeRemainingForRefinerySpawn--;
 	if (timeRemainingForRefinerySpawn <= 0) {
 	    // gets harder with the time!
-	    refinerySpawnCooldown *= .9;
+	    // refinerySpawnCooldown *= .9; //!
 	    timeRemainingForRefinerySpawn = refinerySpawnCooldown;
 	    spawnRefinery();
 	}
