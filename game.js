@@ -23,22 +23,17 @@ var mainState = ( function () {
 	you = new Iceberg(game, cursor);
 	sun = new Sun(game, you);
 	you.sun = sun;
+	Corporation = Corporation();
+	console.log('¿?');
+	Corporation.setPlayer(you);
+	Corporation.setGame(game);
     };
 
     var update = function () {
-	// sun.update();
+	sun.update();
 	you.update();
 	simulateDepth();
-
-	timeRemainingForRefinerySpawn--;
-	if (timeRemainingForRefinerySpawn <= 0) {
-	    timeRemainingForRefinerySpawn = refinerySpawnCooldown;
-	    spawnRefinery(game, you);
-	}
-
-	for (var i=0; i<corporation.length; i++)
-	    corporation[i].update();
-
+	Corporation.update();
     };
 
     return { preload : preload,

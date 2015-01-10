@@ -1,44 +1,3 @@
-// because a corporation has a lot of refineries
-// got it? lots of refineries ha ha ha ha
-// ...
-// ok, no ._.
-var corporation = [];
-
-var recycleRefinery = function (x, y) {
-    // looking for a dead refinery.
-    var refinery;
-    for (var i=0; i<corporation.length; i++) {
-	if (!corporation[i].isAlive()) {
-	    refinery = corporation[i];
-	    break;
-	}
-    }
-
-    if (refinery)
-	refinery.reset(x,y);
-
-    return refinery;
-};
-
-var getRandomNumber = function (minimum, maximum) {
-    return Math.random() * (maximum - minimum) + minimum;
-};
-
-var spawnRefinery = function (game, iceberg) {
-    var x = getRandomNumber(50, game.world.width);
-    var refinery = recycleRefinery(game.world.randomX, game.world.randomY);
-
-    if (!refinery) {
-	refinery = new Refinery(game.world.randomX, game.world.randomY, iceberg);
-	corporation.push(refinery);
-    }
-
-    console.log('spawn! on '
-		+ refinery.sprite.position.x + ', '
-		+ refinery.sprite.position.y, refinery);
-    return refinery;
-};
-
 var Refinery = function (x, y, iceberg) {
     this.hp = 50;
     this.iceberg = iceberg;
@@ -93,7 +52,7 @@ Refinery.prototype.initializeSmog = function () {
     addToLayer(this.smog, SKY);
 };
 
-Refinery.prototype.reset = function (x, y) { // !! keep this DRY
+Refinery.prototype.reset = function (x, y) {
     this.sprite.reset(x,y);
     this.sprite.animations.play('spawn');
     this.smog.reset(x, y-81);
@@ -116,8 +75,7 @@ Refinery.prototype.die = function () {
 
     // this.sprite always fades slower than this.smog
     if (this.sprite.alpha <= 0) {
-	this.smog.kill();
-	this.sprite.kill();
+	this.justDie();
     } else {
 	this.smog.alpha -= .1;
 	this.sprite.alpha -= .05;
@@ -148,7 +106,7 @@ Refinery.prototype.isTakingDamage = function () {
     // for the refinery to take damage.
     // (the game gets pretty hard)
     return game.physics.arcade.distanceBetween(this.iceberg.sprite,
-					       this.sprite) < 80
+					       this.sprite) < 90
 	&& this.iceberg.isAttacking;
 };
 
@@ -163,9 +121,7 @@ Refinery.prototype.exist = function () {
     }
 };
 
-
-var cassualties = function () {
-    for (var i=0; i<corporation.length; i++) {
-	console.log(i + " ", corporation[i].isAlive());
-    }
+Refinery.prototype.justDie = function () {
+    this.smog.kill();
+    this.sprite.kill();
 };
