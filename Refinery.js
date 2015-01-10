@@ -20,7 +20,12 @@ var recycleRefinery = function (x, y) {
     return refinery;
 };
 
+var getRandomNumber = function (minimum, maximum) {
+    return Math.random() * (maximum - minimum) + minimum;
+};
+
 var spawnRefinery = function (game, iceberg) {
+    var x = getRandomNumber(50, game.world.width);
     var refinery = recycleRefinery(game.world.randomX, game.world.randomY);
 
     if (!refinery) {
