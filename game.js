@@ -69,7 +69,7 @@ game.isOver = false;
 game.gameOver = function () {
     if (!game.isOver) {
 	gameOver = game.add.sprite(0,0,'text');
-	gameOver.animations.add('gameover', [2], .1);
+	gameOver.animations.add('gameover', [3], .1);
 	gameOver.play('gameover');
 	addToLayer(gameOver, SKY);
     }
