@@ -42,15 +42,16 @@ var mainState = ( function () {
     };
 
     var update = function () {
-
 	if (intro.alive && !intro.animations.currentAnim.isPlaying) {
 	    intro.kill();
 	}
 
 	sun.update();
-	you.update();
+	if (!game.isOver) {
+	    you.update();
+	    Corporation.update();
+	}
 	simulateDepth();
-	Corporation.update();
     };
 
     return { preload : preload,
@@ -62,3 +63,14 @@ var mainState = ( function () {
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
 game.state.add('main', mainState);
 game.state.start('main');
+game.isOver = false;
+
+game.gameOver = function () {
+    if (!game.isOver) {
+	gameOver = game.add.sprite(0,0,'text');
+	gameOver.animations.add('gameover', [2], .1);
+	gameOver.play('gameover');
+	addToLayer(gameOver, SKY);
+    }
+    game.isOver = true;
+};

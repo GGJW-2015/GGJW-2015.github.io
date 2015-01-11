@@ -35,28 +35,33 @@ Iceberg.prototype.update = function () {
       this.sprite.body.maxVelocity.setTo(this.speed, this.speed);
      */
 
-    this.isMelting = false;
-    this.isAttacking = false;
+    if (this.isDead()) {
+	this.die()
+    } else {
 
-    game.physics.arcade.overlap(this.sprite, this.sun.sprite,
-				function () {
-				    this.takeDamage();
-				}, null, this);
+	this.isMelting = false;
+	this.isAttacking = false;
 
-    if (this.cursor.attack.isDown)
-	this.attack(); // no puede cambiar su velocidad mientras ataca
-    else {
-	if (this.cursor.down.isDown)
-	    this.sprite.body.velocity.y += this.strength;
-	if (this.cursor.up.isDown)
-	    this.sprite.body.velocity.y -= this.strength;
-	if (this.cursor.left.isDown)
-	    this.sprite.body.velocity.x -= this.strength;
-	if (this.cursor.right.isDown)
-	    this.sprite.body.velocity.x += this.strength;
+	game.physics.arcade.overlap(this.sprite, this.sun.sprite,
+				    function () {
+					this.takeDamage();
+				    }, null, this);
 
-	if (!this.isMelting)
-	    this.sprite.animations.play('float');
+	if (this.cursor.attack.isDown)
+	    this.attack(); // no puede cambiar su velocidad mientras ataca
+	else {
+	    if (this.cursor.down.isDown)
+		this.sprite.body.velocity.y += this.strength;
+	    if (this.cursor.up.isDown)
+		this.sprite.body.velocity.y -= this.strength;
+	    if (this.cursor.left.isDown)
+		this.sprite.body.velocity.x -= this.strength;
+	    if (this.cursor.right.isDown)
+		this.sprite.body.velocity.x += this.strength;
+
+	    if (!this.isMelting)
+		this.sprite.animations.play('float');
+	}
     }
 }
 
@@ -70,5 +75,13 @@ Iceberg.prototype.takeDamage = function () {
 };
 
 Iceberg.prototype.isDead = function () {
-    return this.sprite.alpha <= 0;
+    return this.sprite.alpha <= .1;
+};
+
+Iceberg.prototype.die = function () {
+    if (!game.isOver)
+	game.gameOver();
+
+    this.sprite.alpha = 0;
+    this.sprite.body.velocity.x = this.sprite.body.velocity.y = 0;
 };
