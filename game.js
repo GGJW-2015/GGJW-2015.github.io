@@ -1,6 +1,7 @@
 var mainState = ( function () {
     // var you;
     var cursor;
+    var start = 0;
     refinerySpawnCooldown = 100;
     timeRemainingForRefinerySpawn = refinerySpawnCooldown;
 
@@ -17,6 +18,8 @@ var mainState = ( function () {
 	game.load.spritesheet('refinery', 'img/refinery.png', 100, 100);
 	game.load.spritesheet('smog', 'img/smog.png', 200, 150);
 	game.load.image('water', 'img/water.png');
+
+	game.load.spritesheet('text', 'img/intro.png', 800,600);
     };
 
     var create = function () {
@@ -26,6 +29,10 @@ var mainState = ( function () {
 	cursor = game.input.keyboard.createCursorKeys();
 	cursor.attack = game.input.keyboard.addKey(Phaser.Keyboard.A);
 
+	intro = game.add.sprite(0,0, 'text');
+	intro.animations.add('intro', [0,1], 0.2);
+	addToLayer(intro, SKY);
+	intro.animations.play('intro');
 	you = new Iceberg(game, cursor);
 	sun = new Sun(game, you);
 	you.sun = sun;
@@ -35,6 +42,11 @@ var mainState = ( function () {
     };
 
     var update = function () {
+
+	if (intro.alive && !intro.animations.currentAnim.isPlaying) {
+	    intro.kill();
+	}
+
 	sun.update();
 	you.update();
 	simulateDepth();
