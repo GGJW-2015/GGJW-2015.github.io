@@ -3,9 +3,8 @@
 // ...
 // ok, no ._.
 var Corporation = function () {
+    var model;
     var refineries = [];
-    var model = new Refinery(0,0);
-    model.justDie();
     var margin = { left: 0,
 		   right: 0,
 		   top: 0,
@@ -19,6 +18,9 @@ var Corporation = function () {
 
     var setGame = function (theGame) {
 	game = theGame;
+	model = new Refinery(0,0);
+	score.scoreUp(-model.points);
+	model.justDie();
 	worldWidth = game.world.width;
 	worldHeight = game.world.height;
 	setMargins();

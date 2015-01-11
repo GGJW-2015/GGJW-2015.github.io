@@ -1,11 +1,11 @@
 var Sun = function (game, player) {
-    this.lvlUpFlags = [0, 500, 1500, 1800, 2000, 2100];
+    this.lvlUpFlags = [0, 300, 1500, 1800, 2000, 2100];
     this.lvl = 0;
     this.power = 0;
     this.glow = [];
     this.speed = 90;
     this.strength = 20;
-    this.position = [game.world.centerX, game.world.centerY];
+    this.position = [game.world.centerX, game.world.centerY-50];
 
     this.fireball = game.add.sprite(this.position[X], this.position[Y], 'sun');
     this.fireball.anchor.setTo(0.5,0.6);
@@ -48,16 +48,20 @@ Sun.prototype.addGlowSprite = function (spritesheetName, game) {
 };
 
 Sun.prototype.update = function () {
-    var direction = Dot.minus([this.target.sprite.position.x,
-			       this.target.sprite.position.y],
-			      [this.sprite.position.x,
-			       this.sprite.position.y]);
-    direction = Dot.unitVector(direction);
-    this.sprite.body.velocity.x += direction[X]*this.strength;
-    this.sprite.body.velocity.y += direction[Y]*this.strength;
 
-    this.position[X] = this.fireball.position.x = this.sprite.position.x;
-    this.position[Y] = this.fireball.position.y = this.sprite.position.y;
+    if (this.isHarmfull()) {
+	var direction = Dot.minus([this.target.sprite.position.x,
+				   this.target.sprite.position.y],
+				  [this.sprite.position.x,
+				   this.sprite.position.y]);
+	direction = Dot.unitVector(direction);
+	this.sprite.body.velocity.x += direction[X]*this.strength;
+	this.sprite.body.velocity.y += direction[Y]*this.strength;
+
+	this.position[X] = this.fireball.position.x = this.sprite.position.x;
+	this.position[Y] = this.fireball.position.y = this.sprite.position.y;
+    }
+
     if (this.lvl < 6 && this.power > this.lvlUpFlags[this.lvl+1])
 	this.lvlUp();
 };

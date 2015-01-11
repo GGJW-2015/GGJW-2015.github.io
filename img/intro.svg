@@ -24,11 +24,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.83002183"
-     inkscape:cx="315.68529"
-     inkscape:cy="340.06132"
+     inkscape:zoom="0.97430297"
+     inkscape:cx="330.1261"
+     inkscape:cy="303.46723"
      inkscape:document-units="px"
-     inkscape:current-layer="svg2"
+     inkscape:current-layer="layer4"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="761"
@@ -88,8 +88,32 @@
   </g>
   <g
      inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="2">
+    <text
+       xml:space="preserve"
+       style="font-size:39.49814987px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;display:inline;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+       x="401.09933"
+       y="285.815"
+       id="text2985-8-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="401.09933"
+         y="285.815"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;font-family:Liberation Mono;-inkscape-font-specification:Liberation Mono Bold"
+         id="tspan3090">(A)ttack the refineries</tspan><tspan
+         sodipodi:role="line"
+         x="401.09933"
+         y="335.18768"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;font-family:Liberation Mono;-inkscape-font-specification:Liberation Mono Bold"
+         id="tspan3094">to save the ozone layer</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="gameover">
+     inkscape:label="gameover"
+     style="display:inline"
+     sodipodi:insensitive="true">
     <rect
        style="color:#000000;fill:#666666;fill-opacity:0.67878789;fill-rule:nonzero;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect3063"

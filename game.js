@@ -30,9 +30,10 @@ var mainState = ( function () {
 	cursor.attack = game.input.keyboard.addKey(Phaser.Keyboard.A);
 
 	intro = game.add.sprite(0,0, 'text');
-	intro.animations.add('intro', [0,1], 0.2);
+	intro.animations.add('intro', [0,1,2], 0.2);
 	addToLayer(intro, SKY);
 	intro.animations.play('intro');
+	score = new Score();
 	you = new Iceberg(game, cursor);
 	sun = new Sun(game, you);
 	you.sun = sun;

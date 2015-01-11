@@ -1,4 +1,5 @@
 var Refinery = function (x, y, iceberg, sun) {
+    this.points = 1000;
     this.hp = 30;
     this.iceberg = iceberg;
     this.sun = sun;
@@ -26,8 +27,11 @@ Refinery.prototype.update = function () {
 
     }
 
-    if (this.isAlive() && !this.isDying())
+    if (this.isAlive() && !this.isDying()) {
+	if (this.points > 10)
+	    this.points--;
 	sun.powerUp();
+    }
 };
 
 Refinery.prototype.initializeBuilding = function () {
@@ -128,4 +132,5 @@ Refinery.prototype.exist = function () {
 Refinery.prototype.justDie = function () {
     this.smog.kill();
     this.sprite.kill();
+    score.scoreUp(this.points);
 };
